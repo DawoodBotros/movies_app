@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
         FutureBuilder<TopPopular>(
           future: HomeViewModel.getMovieDataPopular(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
+            if (snapshot.hasError) {
               return Center(
                 child: Text(
                   "error ${snapshot.error}",

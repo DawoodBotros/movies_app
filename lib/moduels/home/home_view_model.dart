@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:movies/base.dart';
 import 'package:movies/model/top_popular.dart';
 import 'package:movies/shared/constants/constants.dart';
@@ -17,7 +15,7 @@ class HomeViewModel extends BaseViewModel<BaseNavigator> {
       var json = jsonDecode(response.body);
       print(json.hashCode);
       TopPopular popular = TopPopular.fromJson(json);
-      print(popular);
+      print(popular.results);
       return popular;
     }catch(e){
       print(e);
