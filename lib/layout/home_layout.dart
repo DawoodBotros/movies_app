@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/moduels/home/home_view.dart';
+import 'package:movies/moduels/search/SearchView.dart';
 
 class HomeLayout extends StatefulWidget {
   static const String routeName = "home";
@@ -16,7 +17,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     return Scaffold(
       backgroundColor: const Color(0xff121312),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xff121312),
+        backgroundColor: const Color(0xff121312),
         selectedItemColor: Colors.yellow,
         onTap: (index) {
           selectedIndex = index;
@@ -52,5 +53,6 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   List<Widget> tabs = [
     HomeScreen(),
+    Searchlayout(),
   ];
 }
