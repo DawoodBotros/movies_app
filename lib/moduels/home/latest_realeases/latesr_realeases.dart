@@ -28,7 +28,7 @@ class LatestRealeases extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 children: [
                   CachedNetworkImage(
-                    imageUrl: (baseUrlImage + "${results.posterPath}"),
+                    imageUrl: (BaseUrlimage + "${results.posterPath}"),
                     width: size.width * 0.3,
                     height: size.height * 0.3,
                     fit: BoxFit.fill,

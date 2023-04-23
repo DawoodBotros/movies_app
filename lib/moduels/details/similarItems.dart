@@ -33,11 +33,11 @@ class SimilarItems extends StatelessWidget {
                 child: Stack(
                   children: [
                     CachedNetworkImage(
-                        imageUrl: ("$baseUrlImage${similar.backdropPath}") ?? "",
+                        imageUrl: ("$BaseUrlimage${similar.backdropPath}") ?? "",
                         width: size.width * 0.3,
                         height: size.height * 0.3,
                         fit: BoxFit.fill,
-                        placeholder: (context, url) => Center(
+                        placeholder: (context, url) => const Center(
                               child: CircularProgressIndicator(
                                 color: Colors.yellow,
                               ),
@@ -47,7 +47,7 @@ class SimilarItems extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.asset("assets/images/addToList.png"),
-                          Icon(
+                          const Icon(
                             Icons.add,
                             color: Colors.white,
                           )
@@ -61,7 +61,7 @@ class SimilarItems extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(
+                const Icon(
                   Icons.star,
                   color: Colors.yellow,
                 ),

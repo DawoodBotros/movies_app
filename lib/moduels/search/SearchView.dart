@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies/model/browse_lists.dart';
 import 'package:movies/moduels/search/search_view_model.dart';
+import 'package:movies/shared/network/remote/api_manager.dart';
 import '../../base.dart';
 import '../../model/searchResponse.dart';
 import '../../shared/styles/colors.dart';
@@ -7,6 +9,9 @@ import 'movie _items.dart';
 
 class Searchlayout extends StatefulWidget {
   static const String routeName = "SearchView ";
+  ResultsList? results;
+
+  Searchlayout({this.results});
 
   @override
   _SearchlayoutState createState() => _SearchlayoutState();
@@ -15,13 +20,20 @@ class Searchlayout extends StatefulWidget {
 class _SearchlayoutState extends BaseView<Searchlayout, SearchViewModel>
     implements SearchNavigator {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewModel.navigator = this;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: colorBlack,
         body: Center(
             child: InkWell(
                 onTap: () {
-                  showSearch(context: context, delegate: SearchView());
+                  showSearch(context: context, delegate: SearchView(viewModel));
                 },
                 child: const Icon(
                   (Icons.search),
@@ -31,11 +43,16 @@ class _SearchlayoutState extends BaseView<Searchlayout, SearchViewModel>
 
   @override
   SearchViewModel initViewModel() {
+    // TODO: implement initViewModel
     return SearchViewModel();
   }
 }
 
 class SearchView extends SearchDelegate {
+  SearchViewModel viewModel;
+
+  SearchView(this.viewModel);
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -43,7 +60,7 @@ class SearchView extends SearchDelegate {
           onPressed: () {
             showResults(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.search,
             size: 24,
           ))
@@ -53,19 +70,20 @@ class SearchView extends SearchDelegate {
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: Icon(
-          Icons.clear,
-          size: 24,
-        ));
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      icon: const Icon(
+        Icons.clear,
+        size: 24,
+      ),
+    );
   }
 
   @override
   Widget buildResults(BuildContext context) {
     return FutureBuilder<SearchResponse>(
-      future: SearchViewModel.getMovie(movieName: query),
+      future: viewModel.getMovie(query),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -80,12 +98,12 @@ class SearchView extends SearchDelegate {
             ),
           );
         }
-        var moviedata = snapshot.data?.results ?? [];
+        var movieData = snapshot.data?.results ?? [];
         return ListView.builder(
-          padding: EdgeInsets.symmetric(vertical: 20),
-          itemCount: moviedata.length,
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          itemCount: movieData.length,
           itemBuilder: (context, index) {
-            return MovieItems(moviedata[index]);
+            return MovieItems(movieData[index]);
           },
         );
       },
@@ -106,7 +124,7 @@ class SearchView extends SearchDelegate {
               size: MediaQuery.of(context).size.height / 10,
               color: colorIcon,
             ),
-            Text(
+            const Text(
               "No Movies Found",
               style: TextStyle(color: colorIcon),
             ),

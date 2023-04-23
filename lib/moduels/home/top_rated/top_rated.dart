@@ -42,22 +42,22 @@ class TopRated extends StatelessWidget {
                         children: [
                           CachedNetworkImage(
                               imageUrl:
-                                  (baseUrlImage + "${results.backdropPath}") ??
+                                  (BaseUrlimage + "${results.backdropPath}") ??
                                       "",
                               width: size.width * 0.3,
                               height: size.height * 0.3,
                               fit: BoxFit.fill,
-                              placeholder: (context, url) => Center(
+                              placeholder: (context, url) => const Center(
                                       child: CircularProgressIndicator(
                                     color: Colors.yellow,
                                   )),
                               errorWidget: (context, url, error) =>
-                                  Icon(Icons.error)),
+                                  const Icon(Icons.error)),
                           Positioned(
                               child: Stack(
                             children: [
                               Image.asset("assets/images/addToList.png"),
-                              Icon(
+                              const Icon(
                                 Icons.add,
                                 color: Colors.white,
                               )
@@ -70,7 +70,7 @@ class TopRated extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: Colors.yellow,
                       ),

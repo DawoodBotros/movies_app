@@ -9,9 +9,11 @@
 .history
 .svn/
 migrate_working_dir/
-build
+.dart_tool
 .metadata
+analysis_options.yaml
 README.md
+.metadata
 # IntelliJ related
 *.iml
 *.ipr

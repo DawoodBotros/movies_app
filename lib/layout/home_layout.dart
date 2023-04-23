@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movies/moduels/browse/browse_screen/browse_screen.dart';
 import 'package:movies/moduels/home/home_view.dart';
-import 'package:movies/moduels/search/SearchView.dart';
+import 'package:movies/moduels/search/searchView.dart';
+import 'package:movies/moduels/watch/watch_screen.dart';
 
 class HomeLayout extends StatefulWidget {
   static const String routeName = "home";
@@ -54,5 +56,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   List<Widget> tabs = [
     HomeScreen(),
     Searchlayout(),
+    BrowseScreen(),
+    WatchScreen(),
   ];
 }

@@ -27,7 +27,7 @@ class MovieItems extends StatelessWidget {
             Column(
               children: [
                 Image.network(
-                  "$baseUrlImage${results.posterPath}",
+                  "$BaseUrlimage${results.posterPath}",
                   height: 180,
                   fit: BoxFit.fill,
                 ),
@@ -73,8 +73,8 @@ class MovieItems extends StatelessWidget {
                           width: 4,
                         ),
                         Text("${results.voteAverage}",
-                            style:
-                                const TextStyle(fontSize: 16, color: colorIcon)),
+                            style: const TextStyle(
+                                fontSize: 16, color: colorIcon)),
                       ],
                     )
                   ],
